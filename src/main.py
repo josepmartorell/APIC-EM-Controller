@@ -12,10 +12,13 @@ requests.packages.urllib3.disable_warnings()
 
 class   ciscoApicEm:
 
-    def get_ticket(self):
-        # TICKET API URL
+    def __init__(self, api_url):
         # api_url = "https://{YOUR-APICEM}.cisco.com/api/v1/ticket"
-        api_url = "https://SandBoxAPICEM.cisco.com/api/v1/ticket"  # change this if using a different APIC-EM sandbox
+        self.api_url = api_url
+
+    # TICKET API URL
+    def get_ticket(self):
+
 
         # Notice that all APIC-EM Rest APIs request and response content json type :)
         headers = {
@@ -28,7 +31,7 @@ class   ciscoApicEm:
         }
 
         # Store the request's response in the variable "resp"
-        resp = requests.post(api_url, json.dumps(body_json), headers=headers, verify=False)
+        resp = requests.post(self.api_url, json.dumps(body_json), headers=headers, verify=False)
 
         # Create the object "response_json" with the converted json-formatted response
         response_json = resp.json()
@@ -42,10 +45,9 @@ class   ciscoApicEm:
         # return the service ticket value to the program that calls the function
         return serviceTicket
 
-
-    def print_hosts(self):
         # HOST API URL
-        # api_url = "https://{YOUR-APICEM}.cisco.com/api/v1/host"
+    def print_hosts(self):
+
         api_url = "https://SandBoxAPICEM.cisco.com/api/v1/host"
 
         # Notice that all APIC-EM Rest APIs request and response content json type :)
@@ -83,9 +85,9 @@ class   ciscoApicEm:
         ]
         print(tabulate(host_list, table_header))
 
-
+    # NETWORK-DEVICE API URL
     def print_devices(self):
-        # NETWORK-DEVICE API URL
+
         # api_url = "https://{YOUR-APICEM}.cisco.com/api/v1/network-device"
         api_url = "https://SandBoxAPICEM.cisco.com/api/v1/network-device"
 
@@ -125,7 +127,9 @@ class   ciscoApicEm:
 
 
 # Creates an object to display the dictionaries deployed by the methods
-display = ciscoApicEm()
+api = "https://SandBoxAPICEM.cisco.com/api/v1/ticket"  # change this if using a different APIC-EM sandbox
+display = ciscoApicEm(api)
 print(display.get_ticket())
 display.print_hosts()
 display.print_devices()
+
