@@ -3,7 +3,7 @@ A little touch whith the Cisco APIC-EM controllers in the virtual Cisco DevNet S
 
 # Script description :eyes:
 
-Cisco Application Policy Infrastructure Controller Enterprise Module (APIC-EM) is a driver created by Cisco Systems for centralized device 
+Cisco _Application Policy Infrastructure Controller Enterprise Module_ (APIC-EM) is a driver created by Cisco Systems for centralized device 
 management including a robust Path Trace application that is accessible through the API. This script, complete a program basic 
 steps that does displays a lists of all of the hosts and devices on the network.
 
